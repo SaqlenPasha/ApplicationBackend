@@ -22,37 +22,31 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@MappedSuperclass
 @Data
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity  {
-	
-	@Id
-	@JsonIgnore
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HIBERNATE_SEQUENCE")
-	@SequenceGenerator(sequenceName = "HIBERNATE_SEQUENCE", initialValue = 1, allocationSize = 1, name = "HIBERNATE_SEQUENCE")
-	private Long id;
-	
+	 
 	@CreatedBy
-	@JsonIgnore
-	@Column(name="createdb	y",updatable = false)
-	private String createdBy;
+//	@JsonIgnore
+	@Column(name="createdby",updatable = false,  insertable = true)
+	protected String createdBy;
 
 	@CreatedDate
 	@CreationTimestamp
 	@JsonIgnore
-	@Column(name="createdon",updatable = false)
-	private LocalDateTime createdOn;
+	@Column(name="createdon",updatable = false, insertable = true)
+	protected LocalDateTime createdOn;
 
 	@LastModifiedBy
 	@JsonIgnore
-	@Column(name="modifiedby")
-	private String modifiedBy;
+	@Column(name="modifiedby", insertable = true)
+	protected String modifiedBy;
 
 	@LastModifiedDate
 	@JsonIgnore
 	@UpdateTimestamp
-	@Column(name="modifiedon")
-	private LocalDateTime modifiedOn;
+	@Column(name="modifiedon", insertable = true)
+	protected LocalDateTime modifiedOn;
 
 }

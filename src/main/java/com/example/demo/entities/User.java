@@ -2,6 +2,10 @@ package com.example.demo.entities;
 
 import java.util.Collection;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.SequenceGenerator;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,11 +15,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User implements UserDetails{
+public class User extends AbstractEntity implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HIBERNATE_SEQUENCE")
+	@SequenceGenerator(sequenceName = "HIBERNATE_SEQUENCE", initialValue = 1, allocationSize = 1, name = "HIBERNATE_SEQUENCE")
 	private String userId;
 	
 	private String password;

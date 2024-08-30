@@ -25,7 +25,7 @@ import com.example.demo.security.JwtHelper;
 import com.example.demo.service.UserService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("api/myp/v1/auth")
 public class AuthController {
 
     @Autowired

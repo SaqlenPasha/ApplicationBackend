@@ -58,8 +58,8 @@ public class SecurityConfig {
 		.cors().and()
         .authorizeHttpRequests(
         		auth -> 
-        			auth.requestMatchers("/auth/login").permitAll()
-        				.requestMatchers("/auth/createUser").permitAll()
+        			auth.requestMatchers("/api/myp/v1/auth/login").permitAll()
+        				.requestMatchers("/api/myp/v1/auth/createUser").permitAll()
         				.requestMatchers("/api/**").authenticated()
         					.anyRequest().authenticated())
         .exceptionHandling(ex -> ex.authenticationEntryPoint(point))
